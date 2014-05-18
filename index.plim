@@ -1,0 +1,424 @@
+-namespace module="plimsolls.formatters.code2html" name="code2html"
+
+-py
+  title = u"How PyCon APAC 2014 web is built"
+  buildpack = 'buildpack'
+  # buildpack = '../static/build/packages/'
+
+
+-def pivot()
+  section.slide.cover: div
+    img src="pictures/paperclip.jpg" width="100%"
+
+
+doctype 5
+html lang="zh-hants"
+  head
+    title ${title} -- Keith Yang
+    meta charset="utf-8"
+    meta name="viewport" content="width=792, user-scalable=no"
+    meta http-equiv="x-ua-compatible" content="ie=edge"
+    link rel="stylesheet" href="${buildpack}/shower-ribbon/styles/screen.css"
+    link rel="stylesheet" href="${buildpack}/font-awesome/css/font-awesome.min.css"
+    / Pygments themes here: https://github.com/richleland/pygments-css
+    link rel="stylesheet" href="pygments.css"
+
+    -sass
+      $apac_green: #90C51A;
+      $apac_blue: #0D63A6;
+      $apac_white: #FFFFFF;
+      .black {
+        color: black;
+      }
+      .full .progress div {
+        border-color: transparent transparent $apac_green;
+      }
+      .center {
+        text-align:center;
+      }
+      .note {
+        color: #d369fa;
+      }
+      .slide {
+        background-color: $apac_blue;
+        color: $apac_white;
+        h2 {
+          color: $apac_white;
+          &.footnote {
+            font-size: 32px;
+          }
+          &.big { font-size: 4em; }
+          &.black {
+            color: black;
+            text-shadow: 3px 3px white;
+          }
+          &.pivot {
+            color: $apac_blue;
+            text-shadow: 3px 3px black, 6px 6px white;
+          }
+        }
+        h3 {
+          color: $apac_green;
+          &.note {
+            color: #d369fa;
+          }
+        }
+
+        hr {
+          color: $apac_green;
+          border: 4px solid $apac_green;
+        }
+        .author {
+          color: $apac_green;
+          font-style: italic;
+        }
+        i { font-style: normal; }
+        pre {
+          font-family: monospace;
+          line-height: 40px;
+        }
+        .terminal {
+          padding: 5px;
+          font-family: monospace;
+          border-radius: 5px 5px 5px 5px;
+          background: none repeat scroll 0% 0% rgb(39, 40, 34);
+          color: rgb(248, 248, 242);
+        }
+        p {
+          font-size: larger;
+        }
+        ul li {
+            font-size: larger;
+            i.fa {
+              text-indent: 0;
+            }
+            strong, strong a {
+              text-shadow: 2px 2px black;
+            }
+        }
+        a {
+          background: none;
+          color:#FFF;
+          &:hover {
+            background: linear-gradient(to top, currentcolor, $apac_green 0.09em, transparent 0.09em, transparent) repeat-x scroll 0% 0% transparent;
+          }
+        }
+        &.shout {
+          h2.small {
+            font-size: 3em;
+          }
+          &.small {
+            h2 {
+              font-size: 5em;
+            }
+          }
+          h3 {
+            font-size: 1.6em;
+          }
+          ul.green li { color: $apac_green; }
+          ul li {
+            float: left;
+            width: 196px;
+          }
+          strong {
+            text-shadow: 4px 4px black;
+            &.qna { color: $apac_green; }
+          }
+        }
+      }
+
+
+  body.list
+
+    header.caption
+      h1 = title
+      p
+        Keith Yang
+
+    section#Cover.slide.cover: div
+        h2 How
+          br PyCon APAC 2014 Web
+          br is built
+        hr
+        h3.author Keith Yang
+        h4.text-center
+          a href="https://yang.keitheis.org" yang.keitheis.org
+
+      -sass
+        .text-center {text-align:center;}
+        $apac_blue: #0D63A6;
+        $apac_green: #90C51A;
+        .slide ol li:before, .slide ul li:before {
+            color: $apac_green;
+        }
+        .slide:after {
+          padding: 38px 0px 0px;
+          color: $apac_blue;
+          width: 54px;
+          background: url('pictures/apacribbon.svg') no-repeat scroll 0% 0% transparent;
+        }
+        #Cover {
+          background-color: $apac_blue;
+          h2 {
+            color: #F1F0E0;
+            margin:0 0;
+            text-align:center;
+            line-height: 1.2em;
+            font-size:70px;
+            text-shadow: 3px 3px #000;
+          }
+          .author {
+            text-align:center;
+            color: $apac_green;
+            margin:10px 0 0;
+          }
+        }
+
+    section.slide.cover: div
+      h2.big.pivot.text-center Minimal Viable Web
+      img src="pictures/paperclip.jpg" width="100%"
+
+    section.slide: div
+      h2 Keith Yang
+      ul
+        li
+          | @keitheis
+          br
+            strong
+              a href="https://twitter.com/keitheis": i.fa.fa-twitter
+              ,
+              a href="https://bitbucket.org/keitheis": i.fa.fa-bitbucket
+              ,
+              a href="https://github.com/keitheis": i.fa.fa-github
+        li | `a href='http://taipei.python.org.tw/' Taipei.py` co-organizer
+        li #`a href='https://tw.pycon.org/2014apac/' PyConAPAC 2014` Web Chair
+        li | `a.biideal href="https://www.biideal.com" biideal` coder
+
+
+    section.slide.cover: div
+        img src="pictures/mecollage.png" width="100%"
+
+    section.slide.shout: div
+      h2.small How I became a Web Chair
+        br: span.black.next by accident?
+
+    section.slide.shout: div
+      h2 “Destiny.”
+
+    section.slide: div
+      h2 Outlines
+      ul
+        li : strong : Teamwork
+        li 
+          strong Architecture `span.note | (Django & Mezzanine)`
+        li : strong : Current
+        li : strong : Future
+
+    section.slide.shout: div
+      h2 Teamwork
+
+    section.slide: div
+      h2 Imaginaiton
+      ul
+        li : Imagism
+        li : Realism
+
+    / FB figure: what people think web team is
+
+    section.slide.shout: div
+      h2 Meeting: 0.
+
+    section#party.slide.cover: div
+      img src="pictures/party.jpg" width="100%"
+      h2 Party: 0.
+        br.next BIG mistake.
+
+      -stylus
+        #party h2
+          font-size: 3em
+          text-shadow: 4px 4px #0D63A6
+          margin-top: 2.4em
+          margin-left: 7.3em
+
+    section.slide: div
+      h2 Co-work
+      ul
+        li : Bitbucket & Git
+        li : Trello
+        li : Slack
+        li : Email
+        li.note.next : In office with Art Pai
+
+    section.logoslide.slide: div
+      h2 2012, 2013: Symposion
+      img src="pictures/2012logo.png"
+      -stylus
+        .slide.logoslide
+          background-color: #FFFFFF
+          color: #0D63A6
+          h2
+            color: #0D63A6
+
+    section.logoslide.slide: div
+      h2 2014: Mezzanine
+      h2.black.next 2015: (Mezzanine)?
+
+    section.slide: div
+      h2 Architect Coder?
+      ul
+        li : In 2013, I didn't code.
+        li : In 2014, I coded.
+          br : span.note Easier vs. Harder
+
+    section.slide: div
+      h2 Easier
+      ul
+        li Architecture detail for decision
+        li Live update
+
+    section.slide: div
+      h2 Harder
+      ul
+        li Don't code
+        li Do assign
+
+    section.slide: div
+      h2 Suggestion
+      ol
+        li Coded it before
+        li Don't code this time
+        li Just assign `span.next and don't code`
+        li.next | except live update
+
+    section.slide.shout: div
+      h2 Evolution
+      img.next src="pictures/evolution.jpg" width="100%"
+
+    section.slide.shout: div
+      h2 Architecture
+
+    = pivot()
+
+    section.slide.shout: div
+      h2 `a href="http://mezzanine.jupo.org/" Mezzanine`
+
+    section.slide: div
+      h2 Django
+      pre
+        -py
+          code = u"""
+          INSTALLED_APPS = (
+              "south",
+              "mezzanine...",
+              "bootstrap3",
+              "raven.contrib.django.raven_compat",
+              "djcelery",
+              "djcelery_email",
+              ...
+          )
+          """
+        == code2html.reformat('python', code)
+
+    section.slide: div
+      h2 I18n
+      ul
+        li Multihost for `code ['en', 'zh', 'ja']`
+          br : span.note | Django Middleware
+          br : span.note | by Jim Yeh (Chang-Ching)
+        li Transifex
+        li.next: strong:
+          | --human-force
+
+    section.slide.shout: div
+      h2 Related Open Source
+      ul.green
+        li Python
+        li Django
+        li Mezzanine
+        li Linux
+        li Ubuntu
+        li Fabric
+        li Celery
+        li Firefox
+        li Vim
+        li MacVim
+        li Subline Text
+        li Git
+        li Plim
+        li Shower
+        li Sphinx
+
+    section.slide.shout: div
+      h2 Related Services
+      ul.green
+        li Bitbucket
+        li Trello
+        li Sentry
+        li Transifex
+        li Google Group
+        li Google App
+        li Hangout
+        li Slack
+        li Linode
+        li Mandrill
+        li Github
+        li Facebook Page
+        li Twitter
+        li Plurk
+        li Meetup
+        li Pypi
+        li Dropbox
+        li Buffer
+        li Read the Doc
+        li Stackoverflow
+
+    section.slide.shout: div
+      h2 Future
+
+    section.slide: div
+      h2 Future Develop
+      h3.note with comment by @urs
+      ul
+        li Frozen PyConAPAC 2014 to static html
+        li Seperate awesome proposal review system
+        li Easy 
+
+    section.slide: div
+      h2 Future System
+      ul
+        li Ubuntu (very old version) -> 14.04
+        li Linode HD -> SSD
+          br.note thanks StreetVoice host sponsor
+
+    section.slide.shout: div
+      h2 Fight “Destiny”
+
+    = pivot()
+
+    section.slide.shout: div
+      h2 Thanks
+        br `strong.qna Q&A?`
+
+    p.badge
+      a href="#" `i.fa.fa-heart.fa-large` `i.fa.fa-bitbucket.fa-large`
+
+    -stylus
+      .biideal, a.biideal
+        color: #00a2e1
+
+    .progress: div
+
+    <!-- Copyright © 2014 Keith Yang -->
+    script src="${buildpack}/shower-core/shower.min.js"
+    -if buildpack != 'buildpack'
+      <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+    -else
+      script
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-4248558-11', 'keitheis.github.io');
+        ga('send', 'pageview');
+

@@ -1,0 +1,132 @@
+
+
+<!DOCTYPE html><html lang="zh-hants"><head><title>How PyCon APAC 2014 web is built -- Keith Yang</title><meta charset="utf-8"/><meta name="viewport" content="width=792, user-scalable=no"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><link rel="stylesheet" href="buildpack/shower-ribbon/styles/screen.css"/><link rel="stylesheet" href="buildpack/font-awesome/css/font-awesome.min.css"/><link rel="stylesheet" href="pygments.css"/><style>.black {
+  color: black; }
+
+  .full .progress div {
+    border-color: transparent transparent #90C51A; }
+
+    .center {
+      text-align: center; }
+
+      .note {
+        color: #d369fa; }
+
+        .slide {
+          background-color: #0D63A6;
+          color: #FFFFFF; }
+          .slide h2 {
+            color: #FFFFFF; }
+            .slide h2.footnote {
+              font-size: 32px; }
+              .slide h2.big {
+                font-size: 4em; }
+                .slide h2.black {
+                  color: black;
+                  text-shadow: 3px 3px white; }
+                  .slide h2.pivot {
+                    color: #0D63A6;
+                    text-shadow: 3px 3px black, 6px 6px white; }
+          .slide h3 {
+            color: #90C51A; }
+            .slide h3.note {
+              color: #d369fa; }
+          .slide hr {
+            color: #90C51A;
+            border: 4px solid #90C51A; }
+            .slide .author {
+              color: #90C51A;
+              font-style: italic; }
+              .slide i {
+                font-style: normal; }
+                .slide pre {
+                  font-family: monospace;
+                  line-height: 40px; }
+                  .slide .terminal {
+                    padding: 5px;
+                    font-family: monospace;
+                    border-radius: 5px 5px 5px 5px;
+                    background: none repeat scroll 0% 0% #272822;
+                    color: #f8f8f2; }
+                    .slide p {
+                      font-size: larger; }
+                      .slide ul li {
+                        font-size: larger; }
+                        .slide ul li i.fa {
+                          text-indent: 0; }
+                          .slide ul li strong, .slide ul li strong a {
+                            text-shadow: 2px 2px black; }
+          .slide a {
+            background: none;
+            color: #FFF; }
+            .slide a:hover {
+              background: linear-gradient(to top, #90C51A 0.09em, transparent 0.09em,
+                            transparent) repeat-x scroll 0% 0% transparent; }
+          .slide.shout h2.small {
+            font-size: 3em; }
+            .slide.shout.small h2 {
+              font-size: 5em; }
+          .slide.shout h3 {
+            font-size: 1.6em; }
+            .slide.shout ul.green li {
+              color: #90C51A; }
+              .slide.shout ul li {
+                float: left;
+                width: 196px; }
+                .slide.shout strong {
+                  text-shadow: 4px 4px black; }
+                  .slide.shout strong.qna {
+                    color: #90C51A; }</style></head><body class="list"><header class="caption"><h1>How PyCon APAC 2014 web is built</h1><p>Keith Yang</p></header><section id="Cover" class="slide cover"><div><h2>How<br/>PyCon APAC 2014 Web<br/>is built</h2><hr/><h3 class="author">Keith Yang</h3><h4 class="text-center"><a href="https://yang.keitheis.org">yang.keitheis.org</a></h4><style>.text-center {
+  text-align: center; }
+
+  .slide ol li:before, .slide ul li:before {
+    color: #90C51A; }
+
+    .slide:after {
+      padding: 38px 0px 0px;
+      color: #0D63A6;
+      width: 54px;
+      background: url('pictures/apacribbon.svg') no-repeat scroll 0% 0% transparent; }
+
+      #Cover {
+        background-color: #0D63A6; }
+        #Cover h2 {
+          color: #F1F0E0;
+          margin: 0 0;
+          text-align: center;
+          line-height: 1.2em;
+          font-size: 70px;
+          text-shadow: 3px 3px #000; }
+          #Cover .author {
+            text-align: center;
+            color: #90C51A;
+            margin: 10px 0 0; }</style></div></section><section class="slide cover"><div><h2 class="big pivot text-center">Minimal Viable Web</h2><img src="pictures/paperclip.jpg" width="100%"/></div></section><section class="slide"><div><h2>Keith Yang</h2><ul><li>@keitheis<br/><strong><a href="https://twitter.com/keitheis"><i class="fa fa-twitter"></i></a> <a href="https://bitbucket.org/keitheis"><i class="fa fa-bitbucket"></i></a> <a href="https://github.com/keitheis"><i class="fa fa-github"></i></a></strong></li><li><a href="http://taipei.python.org.tw/">Taipei.py</a> co-organizer</li><li>#<a href="https://tw.pycon.org/2014apac/">PyConAPAC 2014</a> Web Chair</li><li><a href="https://www.biideal.com" class="biideal">biideal</a> coder</li></ul></div></section><section class="slide cover"><div><img src="pictures/mecollage.png" width="100%"/></div></section><section class="slide shout"><div><h2 class="small">How I became a Web Chair<br/><span class="black next">by accident?</span></h2></div></section><section class="slide shout"><div><h2>“Destiny.”</h2></div></section><section class="slide"><div><h2>Outlines</h2><ul><li><strong>Teamwork</strong></li><li><strong>Architecture <span class="note">(Django & Mezzanine)</span></strong></li><li><strong>Current</strong></li><li><strong>Future</strong></li></ul></div></section><section class="slide shout"><div><h2>Teamwork</h2></div></section><section class="slide"><div><h2>Imaginaiton</h2><ul><li>Imagism</li><li>Realism</li></ul></div></section><section class="slide shout"><div><h2>Meeting: 0.</h2></div></section><section id="party" class="slide cover"><div><img src="pictures/party.jpg" width="100%"/><h2>Party: 0.<br class="next"/>BIG mistake.</h2><style>#party h2 {
+  font-size: 3em;
+  text-shadow: 4px 4px #0d63a6;
+  margin-top: 2.4em;
+  margin-left: 7.3em;
+}</style></div></section><section class="slide"><div><h2>Co-work</h2><ul><li>Bitbucket & Git</li><li>Trello</li><li>Slack</li><li>Email</li><li class="note next">In office with Art Pai</li></ul></div></section><section class="logoslide slide"><div><h2>2012, 2013: Symposion</h2><img src="pictures/2012logo.png"/><style>.slide.logoslide {
+  background-color: #fff;
+  color: #0d63a6;
+}
+.slide.logoslide h2 {
+  color: #0d63a6;
+}</style></div></section><section class="logoslide slide"><div><h2>2014: Mezzanine</h2><h2 class="black next">2015: (Mezzanine)?</h2></div></section><section class="slide"><div><h2>Architect Coder?</h2><ul><li>In 2013, I didn't code.</li><li>In 2014, I coded.
+br : span.note Easier vs. Harder</li></ul></div></section><section class="slide"><div><h2>Easier</h2><ul><li>Architecture detail for decision</li><li>Live update</li></ul></div></section><section class="slide"><div><h2>Harder</h2><ul><li>Don't code</li><li>Do assign</li></ul></div></section><section class="slide"><div><h2>Suggestion</h2><ol><li>Coded it before</li><li>Don't code this time</li><li>Just assign <span class="next">and don't code</span></li><li class="next">except live update</li></ol></div></section><section class="slide shout"><div><h2>Evolution</h2><img src="pictures/evolution.jpg" width="100%" class="next"/></div></section><section class="slide shout"><div><h2>Architecture</h2></div></section>
+<section class="slide cover"><div><img src="pictures/paperclip.jpg" width="100%"/></div></section><section class="slide shout"><div><h2><a href="http://mezzanine.jupo.org/">Mezzanine</a></h2></div></section><section class="slide"><div><h2>Django</h2><pre>
+<div class="codehilite"><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="s">&quot;south&quot;</span><span class="p">,</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="s">&quot;mezzanine...&quot;</span><span class="p">,</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="s">&quot;bootstrap3&quot;</span><span class="p">,</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="s">&quot;raven.contrib.django.raven_compat&quot;</span><span class="p">,</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="s">&quot;djcelery&quot;</span><span class="p">,</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="s">&quot;djcelery_email&quot;</span><span class="p">,</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="o">...</span><br/><span class="p">)</span><br/></div></pre></div></section><section class="slide"><div><h2>I18n</h2><ul><li>Multihost for <code>['en', 'zh', 'ja']</code><br/><span class="note">Django Middleware</span><br/><span class="note">by Jim Yeh (Chang-Ching)</span></li><li>Transifex</li><li class="next"><strong>--human-force</strong></li></ul></div></section><section class="slide shout"><div><h2>Related Open Source</h2><ul class="green"><li>Python</li><li>Django</li><li>Mezzanine</li><li>Linux</li><li>Ubuntu</li><li>Fabric</li><li>Celery</li><li>Firefox</li><li>Vim</li><li>MacVim</li><li>Subline Text</li><li>Git</li><li>Plim</li><li>Shower</li><li>Sphinx</li></ul></div></section><section class="slide shout"><div><h2>Related Services</h2><ul class="green"><li>Bitbucket</li><li>Trello</li><li>Sentry</li><li>Transifex</li><li>Google Group</li><li>Google App</li><li>Hangout</li><li>Slack</li><li>Linode</li><li>Mandrill</li><li>Github</li><li>Facebook Page</li><li>Twitter</li><li>Plurk</li><li>Meetup</li><li>Pypi</li><li>Dropbox</li><li>Buffer</li><li>Read the Doc</li><li>Stackoverflow</li></ul></div></section><section class="slide shout"><div><h2>Future</h2></div></section><section class="slide"><div><h2>Future Develop</h2><h3 class="note">with comment by @urs</h3><ul><li>Frozen PyConAPAC 2014 to static html</li><li>Seperate awesome proposal review system</li><li>Easy</li></ul></div></section><section class="slide"><div><h2>Future System</h2><ul><li>Ubuntu (very old version) -> 14.04</li><li>Linode HD -> SSD<br class="note"/>thanks StreetVoice host sponsor</li></ul></div></section><section class="slide shout"><div><h2>Fight “Destiny”</h2></div></section>
+<section class="slide cover"><div><img src="pictures/paperclip.jpg" width="100%"/></div></section><section class="slide shout"><div><h2>Thanks<br/><strong class="qna">Q&A?</strong></h2></div></section><p class="badge"><a href="#"><i class="fa fa-heart fa-large"></i> <i class="fa fa-bitbucket fa-large"></i></a></p><style>.biideal,
+a.biideal {
+  color: #00a2e1;
+}</style><div class="progress"><div></div></div><!-- Copyright © 2014 Keith Yang -->
+<script src="buildpack/shower-core/shower.min.js">
+</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-4248558-11', 'keitheis.github.io');
+ga('send', 'pageview');</script>
+</body></html>
