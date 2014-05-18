@@ -329,6 +329,16 @@ html lang="zh-hants"
         li.next: strong:
           | --human-force
 
+    section#shareimpossible.slide.cover: div
+      img src="pictures/impossible.png" width="100%" alt="Share Impossible"
+      h2.next
+        | “Share on Twitter or Facebook in China is impossible”
+      -stylus
+        #shareimpossible.slide h2
+          margin-top: 3em
+          color: black
+          text-shadow: 3px 3px white, 6px 6px red;
+
     section.slide.shout: div
       h2 Related Open Source
       ul.green
@@ -392,6 +402,10 @@ html lang="zh-hants"
 
     section.slide.shout: div
       h2 Fight “Destiny”
+
+    section.slide.cover: div
+      img src="pictures/pyramid.jpg" width="100%"
+      h2.next Maybe
 
     = pivot()
 
