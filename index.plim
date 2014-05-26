@@ -251,13 +251,21 @@ html lang="zh-hants"
 
     section.logoslide.slide: div
       h2 2012, 2013: Symposion
-      img src="pictures/2012logo.png"
+      img.pycontw2012 src="pictures/pycontw2012.png"
+      img.pycontw2013 src="pictures/pycontw2013.png"
+      hr
       -stylus
         .slide.logoslide
           background-color: #FFFFFF
           color: #0D63A6
           h2
             color: #0D63A6
+          img.pycontw2012
+            width: 34%
+            margin: 0.3em
+          img.pycontw2013
+            width: 60%
+            margin: 0.3em
 
     section.logoslide.slide: div
       h2 2014: Mezzanine
@@ -266,9 +274,10 @@ html lang="zh-hants"
     section.slide: div
       h2 Architect Coder?
       ul
-        li : In 2013, I didn't code.
-        li : In 2014, I coded.
-          br : span.note Easier vs. Harder
+        li In 2013, I didn't code.
+        li In 2014, I coded.
+          br
+          span.note Easier vs. Harder
 
     section.slide: div
       h2 Easier
@@ -330,57 +339,87 @@ html lang="zh-hants"
           | --human-force
 
     section#shareimpossible.slide.cover: div
-      img src="pictures/impossible.png" width="100%" alt="Share Impossible"
+      img src="pictures/shareimpossible.png" width="100%" alt="Share Impossible"
       h2.next
-        | “Share on Twitter or Facebook in China is impossible”
+        | “Impossible to share on Twitter or Facebook in China at present”
       -stylus
-        #shareimpossible.slide h2
-          margin-top: 3em
-          color: black
-          text-shadow: 3px 3px white, 6px 6px red;
+        #shareimpossible.slide
+          background-color: #0D63A6
+          h2
+            margin-top: 8em
+            color: white
+      / color: #90C51A
 
-    section.slide.shout: div
-      h2 Related Open Source
+    section.related.slide.shout: div
+      h2.related Related
+        br Open Source
       ul.green
         li Python
         li Django
         li Mezzanine
         li Linux
         li Ubuntu
+        li OpenSSH
         li Fabric
         li Celery
+        li Redis
+        li PostgreSQL
+        li SQLite
+        li Nginx
+        li uwsgi
         li Firefox
         li Vim
         li MacVim
-        li Subline Text
         li Git
         li Plim
-        li Shower
+        li Mako
+        li Subline Text
+        li Babel
+        li gettext
+        li AngularJS
+        li IPython
+        li Sentry
         li Sphinx
+        li Shower
+        li Supervisord
+        li ...
+      -stylus
+        h2.related
+          color: rgba(255, 255, 255, 0.7)
 
     section.slide.shout: div
-      h2 Related Services
+      h2.related Related
+        br Services
       ul.green
         li Bitbucket
         li Trello
         li Sentry
         li Transifex
-        li Google Group
-        li Google App
         li Hangout
         li Slack
         li Linode
         li Mandrill
         li Github
-        li Facebook Page
+        li Read the Doc
+        li Google Group
+        li Google App
+        li Dropbox
         li Twitter
         li Plurk
+        li Facebook Page
         li Meetup
         li Pypi
-        li Dropbox
+        li CLBC
         li Buffer
-        li Read the Doc
+        li Plurk
+        li Youtube
+        li KKTIX
+        li Doodle
         li Stackoverflow
+        li Hackpad
+        li CheckIO
+        li 琅茶
+        li ...
 
     section.slide.shout: div
       h2 Future
@@ -413,10 +452,20 @@ html lang="zh-hants"
       h2 Thanks
         br `strong.qna Q&A?`
 
+    section.slide.shout: div
+      h2 Happy Fork
+      p
+        PyConAPAC Web Site is
+        ,
+        a.underline href="https://bitbucket.org/pycontw/pycon-apac-2014"
+          | open source on `i.fa.fa-bitbucket` Bitbucket
+
     p.badge
       a href="#" `i.fa.fa-heart.fa-large` `i.fa.fa-bitbucket.fa-large`
 
     -stylus
+      a.underline
+        border-bottom: 3px solid #90C51A
       .biideal, a.biideal
         color: #00a2e1
 
